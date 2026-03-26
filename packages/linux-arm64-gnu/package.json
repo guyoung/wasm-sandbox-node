@@ -1,0 +1,21 @@
+{
+  "name": "@wasm-sandbox/wasm-sandbox.linux-arm64-gnu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "guyoung"
+  },
+  "homepage": "https://github.com/guyoung/wasm-sandbox-node",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/guyoung/wasm-sandbox-node.git"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "wasm-sandbox.linux-arm64-gnu.node",
+    "README.md"
+  ],
+  "os": ["linux"],
+  "cpu": ["arm64"]
+}

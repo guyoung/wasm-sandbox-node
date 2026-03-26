@@ -1,0 +1,1 @@
+module.exports = require('./wasm-sandbox.darwin-x64.node')

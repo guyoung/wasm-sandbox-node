@@ -1,0 +1,1 @@
+module.exports = require('./wasm-sandbox.linux-x64-gnu.node')

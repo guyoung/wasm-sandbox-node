@@ -1,0 +1,1 @@
+module.exports = require('./wasm-sandbox.linux-arm64-musl.node')

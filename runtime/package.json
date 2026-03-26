@@ -1,0 +1,51 @@
+{
+  "name": "@wasm-sandbox/runtime",
+  "version": "1.0.0",
+  "description": "wasm-sandbox runtime",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guyoung/wasm-sandbox-node"
+  },
+  "license": "MIT",
+  "keywords": [
+  ],
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "README.md"
+  ],
+  "napi": {
+    "binaryName": "wasm-sandbox",
+    "targets": [
+      "x86_64-pc-windows-msvc",
+      "aarch64-pc-windows-msvc",
+      "x86_64-apple-darwin",
+      "aarch64-apple-darwin",
+      "x86_64-unknown-linux-gnu",
+      "aarch64-unknown-linux-gnu",
+      "x86_64-unknown-linux-musl",
+      "aarch64-unknown-linux-musl"
+    ]
+  },
+  "engines": {
+    "node": ">= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0"
+  },
+  "scripts": {
+    "build": "napi build --platform --release --no-js",
+    "artifacts": "napi artifacts"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^3.2.0"
+  },
+  "optionalDependencies": {
+    "@wasm-sandbox/wasm-sandbox-win32-x64-msvc": "1.0.0",
+    "@wasm-sandbox/wasm-sandbox-win32-arm64-msvc": "1.0.0",
+    "@wasm-sandbox/wasm-sandbox-darwin-x64": "1.0.0",
+    "@wasm-sandbox/wasm-sandbox-darwin-arm64": "1.0.0",
+    "@wasm-sandbox/wasm-sandbox-linux-x64-gnu": "1.0.0",
+    "@wasm-sandbox/wasm-sandbox-linux-arm64-gnu": "1.0.0",
+    "@wasm-sandbox/wasm-sandbox-linux-x64-musl": "1.0.0",
+    "@wasm-sandbox/wasm-sandbox-linux-arm64-musl": "1.0.0"
+  }
+}

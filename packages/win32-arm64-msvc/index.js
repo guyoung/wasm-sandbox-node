@@ -1,0 +1,1 @@
+module.exports = require('./wasm-sandbox.win32-arm64-msvc.node')

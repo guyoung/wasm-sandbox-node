@@ -1,0 +1,20 @@
+{
+  "name": "@wasm-sandbox/wasm-sandbox.darwin-x64",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "guyoung"
+  },
+  "homepage": "https://github.com/guyoung/wasm-sandbox-node",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/guyoung/wasm-sandbox-node.git"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "wasm-sandbox.darwin-x64.node"
+  ],
+  "os": ["darwin"],
+  "cpu": ["x64"]
+}
