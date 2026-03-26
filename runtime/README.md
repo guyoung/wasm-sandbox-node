@@ -6,9 +6,9 @@
 
 [English](README.md) / [简体中文](README_zh-CN.md)
 
-`@wasm-sandbox/runtime` is a high-performance, secure WebAssembly runtime sandbox for Node.js. Built on the **Wasm Component Model** and **WASI (WebAssembly System Interface)**, it provides **Capability-based security** to ensure your host environment remains protected.
+`@wasm-sandbox/runtime` is a high-performance, secure WebAssembly sandbox package for Node.js. Built on the **Wasm Component Model** and **WASI (WebAssembly System Interface)**, it provides **Capability-based security** to ensure your host environment remains protected.
 
-The runtime allows you to execute Wasm modules in a restricted environment with granular control over file system access, network requests, environment variables, and computational resources (memory, CPU fuel, and execution time).
+The package allows you to execute Wasm modules in a restricted environment with granular control over file system access, network requests, environment variables, and computational resources (memory, CPU fuel, and execution time).
 
 ## Features
 

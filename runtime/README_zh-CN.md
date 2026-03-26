@@ -6,9 +6,9 @@
 
 [English](README.md) / [简体中文](README_zh-CN.md)
 
-`@wasm-sandbox/runtime` 是一个高性能、安全的 Node.js WebAssembly 运行时沙箱。它基于 **Wasm 组件模型 (Component Model)** 和 **WASI (WebAssembly System Interface)** 构建，提供了**基于能力的安全性 (Capability-based security)**。
+`@wasm-sandbox/runtime` 是一个高性能、安全的 Node.js WebAssembly 沙箱库。它基于 **Wasm 组件模型 (Component Model)** 和 **WASI (WebAssembly System Interface)** 构建，提供了**基于能力的安全性 (Capability-based security)**。
 
-该运行时允许你在受限的沙箱环境中执行 Wasm 模块，对文件系统访问、网络请求、环境变量和计算资源（内存、计算量、执行时间）进行精细化控制。
+该库允许你在受限的沙箱环境中执行 Wasm 模块，对文件系统访问、网络请求、环境变量和计算资源（内存、计算量、执行时间）进行精细化控制。
 
 ## 特性
 
@@ -26,7 +26,7 @@ npm install @wasm-sandbox/runtime
 
 ## 核心 API 快速上手
 
-### 1. 运行 CLI 模式的 Wasm 模块 (`run`)
+### 1. 运行一个 Wasm 模块 (`run`)
 
 适用于运行一次性任务或命令行工具。
 
