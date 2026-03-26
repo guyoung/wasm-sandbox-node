@@ -1,9 +1,11 @@
-<div align="center">
 # @wasm-sandbox/runtime
 
+[![npm version](https://img.shields.io/npm/v/@wasm-sandbox/runtime.svg?style=flat-square)](https://www.npmjs.com/package/@wasm-sandbox/runtime)
+[![npm downloads](https://img.shields.io/npm/dm/@wasm-sandbox/runtime.svg?style=flat-square)](https://www.npmjs.com/package/@wasm-sandbox/runtime)
+[![License](https://img.shields.io/npm/l/@wasm-sandbox/runtime.svg?style=flat-square)](https://github.com/guyoung/wasm-sandbox-node/blob/main/LICENSE)
+
 [English](README.md) / [简体中文](README_zh-CN.md)
-</div>
-<br />
+
 `@wasm-sandbox/runtime` 是一个高性能、安全的 Node.js WebAssembly 运行时沙箱。它基于 **Wasm 组件模型 (Component Model)** 和 **WASI (WebAssembly System Interface)** 构建，提供了**基于能力的安全性 (Capability-based security)**。
 
 该运行时允许你在受限的沙箱环境中执行 Wasm 模块，对文件系统访问、网络请求、环境变量和计算资源（内存、计算量、执行时间）进行精细化控制。
