@@ -14,7 +14,7 @@ npx wasm-sandbox <command>
 
 ## Usage
 
-### Run WebAssembly Module
+### Run WebAssembly Component
 
 ```bash
 # Basic run
@@ -72,7 +72,7 @@ wasm-sandbox serve example.wasm --config-var KEY=VALUE --keyvalue-var DATA=VALUE
 | `--wasm-max-memory-size <bytes>` | Maximum memory size (bytes) |
 | `--wasm-max-stack <bytes>` | Maximum stack size (bytes) |
 | `--wasm-fuel <units>` | Execution fuel units |
-| `--wasm-cache-dir <dir>` | Precompiled module cache directory |
+| `--wasm-cache-dir <dir>` | Precompiled Wasm Component cache directory |
 
 ### serve Command
 

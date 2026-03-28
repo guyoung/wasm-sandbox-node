@@ -79,7 +79,7 @@ wasm-sandbox serve example.wasm --config-var KEY=VALUE --keyvalue-var DATA=VALUE
 | `--wasm-max-memory-size <bytes>` | 最大内存大小（字节） |
 | `--wasm-max-stack <bytes>` | 最大栈大小（字节） |
 | `--wasm-fuel <units>` | 执行燃料单位 |
-| `--wasm-cache-dir <dir>` | 预编译模块缓存目录 |
+| `--wasm-cache-dir <dir>` | 预编译 Wasm 组件缓存目录 |
 
 ### serve 命令
 

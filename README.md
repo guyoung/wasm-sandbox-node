@@ -1,8 +1,10 @@
 wasm-sandbox-node
 =====================
 
-* [wasm-sandbox runtime](./runtime/)
-* [wasm-sandbox cli](./cli/)
+* [Wasm Sandbox Runtime](./runtime/)
+* [Wasm Sandbox CLI](./cli/)
+* [Wasm Sandbox Plugin for OpenClaw](./openclaw/)
+
 
 
 ## License
