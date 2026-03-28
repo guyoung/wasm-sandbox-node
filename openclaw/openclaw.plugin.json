@@ -4,6 +4,22 @@
   "description": "Wasm Sandbox Plugin for OpenClaw.\n\n Wasm Sandbox Built on the `WebAssembly Component Model` and `WASI (WebAssembly System Interface)`, it provides `Capability-based security` to ensure your host environment remains protected.\nAllows to execute WebAssembly components in a restricted environment with granular control over file system access, network requests, environment variables, and computational resources (memory, CPU fuel, and execution time).\n\n Note: Wasm Sandbox does not support running a `Core WebAssembly module` directly. You can use `wasm-tools`(https://github.com/bytecodealliance/wasm-tools) to convert a Core wasm module into a `WebAssembly Component`",
   "configSchema": {
     "type": "object",
-    "additionalProperties": false
+    "additionalProperties": false,
+     "properties": {
+      "defaultTimeout": {
+        "type": "number",
+        "description": "Default download timeout in milliseconds",
+        "default": 300000
+      },
+      "defaultRetry": {
+        "type": "number",
+        "description": "Default number of retry attempts",
+        "default": 3
+      },
+      "defaultOutputDir": {
+        "type": "string",
+        "description": "Default output directory for downloads"
+      }
+    }
   }
 }

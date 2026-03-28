@@ -243,3 +243,43 @@ export const ServeOptionSchema = Type.Object({
 })
 
 
+export const DownloadOptionSchema = Type.Object({
+  /** URL to download */
+  url: Type.String({
+    description: 'URL of the file to download',
+  }),
+
+  /** Output file path (absolute or relative path) */
+  output: Type.String({
+    description: 'Output file path (absolute or relative to workspace)',
+  }),
+
+  /** Maximum number of retry attempts on failure (default: 3) */
+  retry: Type.Optional(Type.Number({
+    description: 'Maximum retry attempts on failure (default: 3)',
+    minimum: 0,
+    maximum: 10,
+  })),
+
+  /** Enable resume for interrupted downloads (default: true) */
+  resume: Type.Optional(Type.Boolean({
+    description: 'Enable resume for interrupted downloads (default: true)',
+  })),
+
+  /** Download timeout in milliseconds (default: 300000 = 5 minutes) */
+  timeout: Type.Optional(Type.Number({
+    description: 'Download timeout in milliseconds (default: 300000)',
+    minimum: 1000,
+  })),
+
+  /** Expected file size in bytes (for resume validation) */
+  expectedSize: Type.Optional(Type.Number({
+    description: 'Expected file size in bytes (for resume validation)',
+    minimum: 0,
+  })),
+
+  /** Custom HTTP headers */
+  headers: Type.Optional(Type.Record(Type.String(), Type.String(), {
+    description: 'Custom HTTP headers',
+  })),
+});

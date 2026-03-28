@@ -1,10 +1,7 @@
 import wasm_sandbox from '@wasm-sandbox/runtime';
 
-export function registerCli(params) {
-    const { program } = params;
-
-    const root = program.command("wasm-sandbox")
-        .description("Wasm Sandbox CLI tool for OpenClaw.\n\n Wasm Sandbox Built on the `WebAssembly Component Model` and `WASI (WebAssembly System Interface)`, it provides `Capability-based security` to ensure your host environment remains protected.\nAllows to execute WebAssembly components in a restricted environment with granular control over file system access, network requests, environment variables, and computational resources (memory, CPU fuel, and execution time).\n\n Note: Wasm Sandbox does not support running a `Core WebAssembly module` directly. You can use `wasm-tools`(https://github.com/bytecodealliance/wasm-tools) to convert a Core wasm module into a `WebAssembly Component`")
+export function registerRunCli(params) {
+    const { root } = params;
 
     root
         .command("run")
@@ -46,6 +43,10 @@ export function registerCli(params) {
                 wasmCacheDir: opts.wasmCacheDir
             });
         });
+}
+
+export function registerServeCli(params) {
+    const { root } = params;
 
     root
         .command("serve")
