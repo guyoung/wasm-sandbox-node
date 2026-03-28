@@ -1,0 +1,35 @@
+{
+  "name": "openclaw-wasm-sandbox",
+  "version": "0.1.0",
+  "description": "Wasm Sandbox Plugin for OpenClaw",
+  "author": "guyoung",
+  "homepage": "https://github.com/guyoung/wasm-sandbox-node/tree/main/openclaw",
+  "repository": "https://github.com/guyoung/wasm-sandbox-node", 
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "wasm",
+    "webassembly",
+    "wasi",
+    "sandbox"
+  ],
+  "type": "module",
+  "files": [
+    "index.js",
+    "README.md",
+    "cli.js",
+    "tool.js",
+    "schema.js",
+    "openclaw.plugin.json"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.49",
+    "@wasm-sandbox/runtime": "^1.1.0"
+  }
+}

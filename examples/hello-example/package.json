@@ -1,0 +1,10 @@
+{
+  "name": "hello-example",
+  "version": "1.0.0",
+  "description": "hello example",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "@wasm-sandbox/runtime": "^1.0.5"
+  }
+}

@@ -12,10 +12,10 @@ export interface EnvVar {
   value?: string
 }
 
-/** Run a WebAssembly module */
+/** Run a WebAssembly Component */
 export declare function run(runOption: RunOption): void
 
-/** Run a WebAssembly module configuration option */
+/** Run a WebAssembly Component configuration option */
 export interface RunOption {
   /**
    * Override the value of `argv[0]`, typically the name of the executable of
@@ -43,7 +43,7 @@ export interface RunOption {
   /**
    * Pass an environment variable to the program.
    *
-   * Example: --env FOO=BAR
+   * Example: `--env FOO=BAR`
    */
   envVars?: Array<EnvVar>
   /**
@@ -64,12 +64,12 @@ export interface RunOption {
    * Example: `--block-networks 1.1.1.1/32  -- block-networks private`
    */
   blockNetworks?: Array<string>
-  /** Maximum execution time of wasm code before timing out (seconds) */
+  /** Maximum execution time of wasm code before timing out (seconds). */
   wasmTimeout?: number
   /**
    * Maximum size, in bytes, that a linear memory is allowed to reach.
    * Growth beyond this limit will cause memory.grow instructions in
-   * WebAssembly modules to return -1 and fail.
+   * WebAssembly components to return -1 and fail.
    */
   wasmMaxMemorySize?: number
   /**
@@ -87,22 +87,22 @@ export interface RunOption {
    * instructions which do consume fuel.
    */
   wasmFuel?: number
-  /** Precompiled WebAssembly modules as `*.cwasm` files cache dir. */
+  /** Precompiled WebAssembly Component as `*.cwasm` files cache dir. */
   wasmCacheDir?: string
-  /** The WebAssembly module to run */
+  /** The WebAssembly Component to run */
   wasmFile: string
   /**
-   * Arguments passed to the wasm module will be configured as WASI CLI
+   * Arguments passed to the WebAssembly Component will be configured as WASI CLI
    * arguments unless the `--invoke` CLI argument is passed in which case
    * arguments will be interpreted as arguments to the function specified.
    */
   args?: Array<string>
 }
 
-/** Start http server from a WebAssembly module */
+/** Start http server from a WebAssembly Component */
 export declare function serve(serveOption: ServeOption): void
 
-/** Start http server from a WebAssembly module configuration option */
+/** Start http server from a WebAssembly Component configuration option */
 export interface ServeOption {
   /** Socket ip for the web server to bind to. */
   ip?: string
@@ -123,7 +123,7 @@ export interface ServeOption {
   /**
    * Pass an environment variable to the program.
    *
-   * Example: --env FOO=BAR
+   * Example: `--env FOO=BAR`
    */
   envVars?: Record<string, string | undefined | null>
   /**
@@ -139,21 +139,21 @@ export interface ServeOption {
    */
   allowedOutboundHosts?: Array<string>
   /**
-   * Set of IP networks to be blocked
+   * Set of IP networks to be blocked.
    *
-   * Example: `--block-networks 1.1.1.1/32  -- block-networks private`
+   * Example: `--block-networks 1.1.1.1/32  --block-networks private`
    */
   blockNetworks?: Array<string>
   /**
    * Pass a wasi config variable to the program.
    *
-   * Example: --config-var FOO=BAR
+   * Example: `--config-var FOO=BAR`
    */
   configVars?: Array<EnvVar>
   /**
    * Preset data for the In-Memory provider of WASI key-value API.
    *
-   * Example: --keyvalue-var FOO=BAR
+   * Example: `--keyvalue-var FOO=BAR`
    */
   keyvalueVars?: Array<EnvVar>
   /** Maximum execution time of wasm code before timing out (seconds) */
@@ -161,7 +161,7 @@ export interface ServeOption {
   /**
    * Maximum size, in bytes, that a linear memory is allowed to reach.
    * Growth beyond this limit will cause memory.grow instructions in
-   * WebAssembly modules to return -1 and fail.
+   * WebAssembly Component to return -1 and fail.
    */
   wasmMaxMemorySize?: number
   /**
@@ -179,8 +179,8 @@ export interface ServeOption {
    * instructions which do consume fuel.
    */
   wasmFuel?: number
-  /** Precompiled WebAssembly modules as `*.cwasm` files cache dir. */
+  /** Precompiled WebAssembly Component as `*.cwasm` files cache dir. */
   wasmCacheDir?: string
-  /** The WebAssembly module to run */
+  /** The WebAssembly Component to run */
   wasmFile: string
 }

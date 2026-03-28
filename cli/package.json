@@ -1,0 +1,32 @@
+{
+  "name": "wasm-sandbox",
+  "version": "1.1.0",
+  "description": "wasm-sandbox CLI tool",
+  "author": "guyoung",
+  "homepage": "https://github.com/guyoung/wasm-sandbox-node/tree/main/cli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guyoung/wasm-sandbox-node.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "wasm",
+    "webassembly",
+    "wasi",
+    "sandbox",
+    "cli"
+  ],
+  "files": [
+    "cli.js",
+    "README.md",
+    "README_zh-CN.md"
+  ],
+  "type": "module",
+  "bin": {
+    "wasm-sandbox": "cli.js"
+  },
+  "dependencies": {
+    "@wasm-sandbox/runtime": "^1.1.0",
+    "commander": "^14.0.3"
+  }
+}

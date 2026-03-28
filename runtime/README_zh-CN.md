@@ -6,14 +6,16 @@
 
 [English](README.md) / [简体中文](README_zh-CN.md)
 
-`@wasm-sandbox/runtime` 是一个高性能、安全的 Node.js WebAssembly 沙箱库。它基于 **Wasm 组件模型 (Component Model)** 和 **WASI (WebAssembly System Interface)** 构建，提供了**基于能力的安全性 (Capability-based security)**。
+`@wasm-sandbox/runtime` 是一个高性能、安全的 Node.js WebAssembly 沙箱库。它基于 **Webassembly 组件模型 (Component Model)** 和 **WASI (WebAssembly System Interface)** 构建，提供了**基于能力的安全性 (Capability-based security)**。
 
-该库允许你在受限的沙箱环境中执行 Wasm 模块，对文件系统访问、网络请求、环境变量和计算资源（内存、计算量、执行时间）进行精细化控制。
+该库允许你在受限的沙箱环境中执行 Webassembly 组件，对文件系统访问、网络请求、环境变量和计算资源（内存、计算量、执行时间）进行精细化控制。
+
+> **注意：** 该库不支持直接运行 **Core WebAssembly module**。如需使用，请先通过 [`wasm-tools`](https://github.com/bytecodealliance/wasm-tools) 将 Core wasm module 转换为 **Webassembly Component**。
+
 
 ## 特性
 
 - 🛡️ **能力路由安全**：严格控制文件读写、网络出站请求。
-- 📦 **支持组件模型**：兼容最新的 WebAssembly Component Model。
 - 🌐 **HTTP 托管**：支持直接在沙箱内运行 Wasm 编写的 HTTP 服务。
 - ⚡ **高性能**：底层采用 Rust 编写（通过 NAPI-RS 绑定），支持 AOT 编译缓存。
 - ⚖️ **资源配额**：可限制内存大小、堆栈大小、计算燃油 (Fuel) 和超时时间。

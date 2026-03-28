@@ -1,15 +1,10 @@
 {
   "name": "@wasm-sandbox/wasm-sandbox.win32-x64-msvc",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "description": "Native Artifact for wasm-sandbox",
   "main": "index.js",
-  "author": {
-    "name": "guyoung"
-  },
+  "author": "guyoung",
   "homepage": "https://github.com/guyoung/wasm-sandbox-node",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/guyoung/wasm-sandbox-node.git"
-  },
   "license": "MIT",
   "files": [
     "index.js",
@@ -21,5 +16,8 @@
   ],
   "cpu": [
     "x64"
-  ]
+  ],
+   "publishConfig": {
+    "access": "public"
+  }
 }

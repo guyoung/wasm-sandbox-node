@@ -1,4 +1,7 @@
-const { platform, arch } = process
+import { platform, arch } from 'process'
+import { createRequire } from 'module'
+
+const require = createRequire(import.meta.url)
 
 function isMusl() {
     if (platform !== 'linux') return false
@@ -65,4 +68,4 @@ function loadBinding() {
     throw new Error(`Unsupported platform: ${platform}-${arch}`)
 }
 
-module.exports = loadBinding()
+export default loadBinding()
