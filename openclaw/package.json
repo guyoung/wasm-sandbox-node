@@ -4,7 +4,7 @@
   "description": "Wasm Sandbox Plugin for OpenClaw",
   "author": "guyoung",
   "homepage": "https://github.com/guyoung/wasm-sandbox-node/tree/main/openclaw",
-  "repository": "https://github.com/guyoung/wasm-sandbox-node", 
+  "repository": "https://github.com/guyoung/wasm-sandbox-node",
   "license": "MIT",
   "keywords": [
     "openclaw",
@@ -27,10 +27,12 @@
     "extensions": [
       "./index.js"
     ],
+    "build": {
+      "openclawVersion": "2026.3.22"
+    },
     "compat": {
       "pluginApi": ">=2026.3.22"
     }
- 
   },
   "dependencies": {
     "@sinclair/typebox": "^0.34.49",
