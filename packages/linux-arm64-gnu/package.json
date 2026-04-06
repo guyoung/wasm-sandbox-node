@@ -1,6 +1,6 @@
 {
   "name": "@wasm-sandbox/wasm-sandbox.linux-arm64-gnu",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Native Artifact for wasm-sandbox",
   "main": "index.js",
   "author": "guyoung",

@@ -20,28 +20,32 @@ export function registerRunCli(params) {
         .option('--wasm-fuel <units>', "Enable execution fuel with N units fuel, trapping after running out of fuel.", parseInt)
         .option('--wasm-cache-dir <dir>', "Precompiled WebAssembly Component as `*.cwasm` files cache dir. ")
         .action(async (args, opts) => {
-            wasm_sandbox.run({
-                wasmFile: args.shift(),
-                args: args || [],
-                programName: opts.programName,
-                invoke: opts.invoke,
-                workDir: opts.workDir,
-                mapDirs: opts.mapDir?.map(m => {
-                    const [key, value] = m.split('::');
-                    return { key, value: value || key };
-                }),
-                envVars: opts.env?.map(e => {
-                    const [key, value] = e.split('=');
-                    return { key, value };
-                }),
-                allowedOutboundHosts: opts.allowedOutboundHosts,
-                blockNetworks: opts.blockNetworks,
-                wasmTimeout: opts.wasmTimeout,
-                wasmMaxMemorySize: opts.wasmMaxMemorySize,
-                wasmMaxWasmStack: opts.wasmMaxStack,
-                wasmFuel: opts.wasmFuel,
-                wasmCacheDir: opts.wasmCacheDir
-            });
+            try {
+                wasm_sandbox.run({
+                    wasmFile: args.shift(),
+                    args: args || [],
+                    programName: opts.programName,
+                    invoke: opts.invoke,
+                    workDir: opts.workDir,
+                    mapDirs: opts.mapDir?.map(m => {
+                        const [key, value] = m.split('::');
+                        return { key, value: value || key };
+                    }),
+                    envVars: opts.env?.map(e => {
+                        const [key, value] = e.split('=');
+                        return { key, value };
+                    }),
+                    allowedOutboundHosts: opts.allowedOutboundHosts,
+                    blockNetworks: opts.blockNetworks,
+                    wasmTimeout: opts.wasmTimeout,
+                    wasmMaxMemorySize: opts.wasmMaxMemorySize,
+                    wasmMaxWasmStack: opts.wasmMaxStack,
+                    wasmFuel: opts.wasmFuel,
+                    wasmCacheDir: opts.wasmCacheDir
+                });
+            } catch (err) {
+                console.error('Error: ', err.message)
+            }
         });
 }
 
@@ -89,23 +93,27 @@ export function registerServeCli(params) {
                 return { key, value };
             });
 
-            wasm_sandbox.serve({
-                wasmFile: wasm,
-                ip: opts.ip,
-                port: opts.port,
-                workDir: opts.workDir,
-                mapDirs,
-                envVars,
-                allowedOutboundHosts: opts.allowedOutboundHosts,
-                blockNetworks: opts.blockNetworks,
-                configVars,
-                keyvalueVars,
-                wasmTimeout: opts.wasmTimeout,
-                wasmMaxMemorySize: opts.wasmMaxMemorySize,
-                wasmMaxWasmStack: opts.wasmMaxStack,
-                wasmFuel: opts.wasmFuel,
-                wasmCacheDir: opts.wasmCacheDir
-            });
+            try {
+                wasm_sandbox.serve({
+                    wasmFile: wasm,
+                    ip: opts.ip,
+                    port: opts.port,
+                    workDir: opts.workDir,
+                    mapDirs,
+                    envVars,
+                    allowedOutboundHosts: opts.allowedOutboundHosts,
+                    blockNetworks: opts.blockNetworks,
+                    configVars,
+                    keyvalueVars,
+                    wasmTimeout: opts.wasmTimeout,
+                    wasmMaxMemorySize: opts.wasmMaxMemorySize,
+                    wasmMaxWasmStack: opts.wasmMaxStack,
+                    wasmFuel: opts.wasmFuel,
+                    wasmCacheDir: opts.wasmCacheDir
+                });
+            } catch (err) {
+                console.error('Error: ', err.message)
+            }
         });
 
 }

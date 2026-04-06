@@ -1,6 +1,6 @@
 {
   "name": "openclaw-wasm-sandbox",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Wasm Sandbox Plugin for OpenClaw",
   "author": "guyoung",
   "homepage": "https://github.com/guyoung/wasm-sandbox-node/tree/main/openclaw",
@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "@sinclair/typebox": "^0.34.49",
-    "@wasm-sandbox/runtime": "^1.1.0"
+    "@wasm-sandbox/runtime": "^1.2.0"
   }
 }

@@ -11,7 +11,7 @@ export function createRunTool(api) {
             try {
                 wasm_sandbox.run(rawParams);
             } catch (err) {
-                console.log(err)
+                console.error('Error: ', err.message)
             }
 
         }
@@ -30,7 +30,7 @@ export function createServeTool(api) {
             try {
                 wasm_sandbox.serve(rawParams);
             } catch (err) {
-                console.log(err)
+                console.error('Error: ', err.message)
             }
 
         }
