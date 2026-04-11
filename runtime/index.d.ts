@@ -108,6 +108,8 @@ export interface ServeOption {
   ip?: string
   /** Socket port for the web server to bind to. */
   port?: number
+  /** Socket port where, when connected to, will initiate a graceful shutdown. */
+  shutdownPort?: number
   /**
    * Grant access of a host directory to guest root dir.
    *

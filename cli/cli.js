@@ -23,10 +23,10 @@ program
     .option('--program-name <name>', "Override the value of `argv[0]`, typically the name of the executable of the application being run.")
     .option('--invoke <function>', "The name of the function to run ")
     .option('--work-dir <dir>', "Grant access of a host directory to guest root dir.\nExample: `--work-dir ./`")
-    .option('--map-dir <mapping...>', "Grant access of a host directory to a guest.\nExample: `--map-dir ./usr/hello::/hello`")
-    .option('--env <var...>', "Pass an environment variable to the program.\nExample: `--env FOO=BAR`")
-    .option('--allowed-outbound-hosts <host...>', "The network destinations which the component is allowed to access.\nExample: `--allowed-outbound-hosts https://*.github.net`")
-    .option('--block-networks <network...>', "Set of IP networks to be blocked.\nExample: `--block-networks 1.1.1.1/32  --block-networks private`")
+    .option('--map-dir <mapping>', "Grant access of a host directory to a guest.\nExample: `--map-dir ./usr/hello::/hello`")
+    .option('--env <var>', "Pass an environment variable to the program.\nExample: `--env FOO=BAR`")
+    .option('--allowed-outbound-hosts <host>', "The network destinations which the component is allowed to access.\nExample: `--allowed-outbound-hosts https://*.github.net`")
+    .option('--block-networks <network>', "Set of IP networks to be blocked.\nExample: `--block-networks 1.1.1.1/32  --block-networks private`")
     .option('--wasm-timeout <seconds>', "Maximum execution time of wasm code before timing out (seconds).", parseInt)
     .option('--wasm-max-memory-size <bytes>', "Maximum size, in bytes, that a linear memory is allowed to reach.", parseInt)
     .option('--wasm-max-stack <bytes>', "Maximum stack size, in bytes, that wasm is allowed to consume before a stack overflow is reported.", parseInt)
@@ -35,22 +35,28 @@ program
 
     .action(async (args, opts) => {
         try {
+            const mapDirs = Array.isArray(opts.mapDir) ? opts.mapDir : (opts.mapDir ? [opts.mapDir] : []);
+            const envVars = Array.isArray(opts.env) ? opts.env : (opts.env ? [opts.env] : []);
             wasm_sandbox.run({
                 wasmFile: args.shift(),
                 args: args || [],
                 programName: opts.programName,
                 invoke: opts.invoke,
                 workDir: opts.workDir,
-                mapDirs: opts.mapDir?.map(m => {
+                mapDirs: mapDirs.map(m => {
                     const [key, value] = m.split('::');
                     return { key, value: value || key };
                 }),
-                envVars: opts.env?.map(e => {
-                    const [key, value] = e.split('=');
-                    return { key, value };
+                envVars: envVars.map(m => {
+                    const [key, value] = m.split('::');
+                    return { key, value: value || key };
                 }),
-                allowedOutboundHosts: opts.allowedOutboundHosts,
-                blockNetworks: opts.blockNetworks,
+                allowedOutboundHosts: Array.isArray(opts.allowedOutboundHosts)
+                    ? opts.allowedOutboundHosts
+                    : (opts.allowedOutboundHosts ? [opts.allowedOutboundHosts] : []),
+                blockNetworks: Array.isArray(opts.blockNetworks)
+                    ? opts.blockNetworks
+                    : (opts.blockNetworks ? [opts.blockNetworks] : []),
                 wasmTimeout: opts.wasmTimeout,
                 wasmMaxMemorySize: opts.wasmMaxMemorySize,
                 wasmMaxWasmStack: opts.wasmMaxStack,
@@ -66,55 +72,56 @@ program
     .command("serve")
     .description("Start http server from a WebAssembly Component.")
     .argument("<wasm>", "WebAssembly Component file.")
-    .option('-i, --ip <ip>', "Socket ip for the web server to bind to.")
-    .option('-p, --port <port>', "Socket port for the web server to bind to. ", parseInt)
+    .option('-i, --ip <ip>', "Socket ip for the web server to bind to.\nDefault: Loopback address, 127.0.0.1")
+    .option('-p, --port <port>', "Socket port for the web server to bind to.\nDefault: 30001", parseInt)
+    .option('--shutdown-port <port>', "Socket port where, when connected to, will initiate a graceful shutdown.\nDefault: 30002", parseInt)
     .option('--work-dir <dir>', "Grant access of a host directory to guest root dir.\nExample: `--work-dir ./`")
-    .option('--map-dir <mapping...>', "Grant access of a host directory to a guest.\nExample: `--map-dir ./usr/hello::/hello`")
-    .option('--env <var...>', "Pass an environment variable to the program.\nExample: `--env FOO=BAR`")
-    .option('--allowed-outbound-hosts <host...>', "The network destinations which the component is allowed to access.\nExample: `--allowed-outbound-hosts https://*.github.net`")
-    .option('--block-networks <network...>', "Set of IP networks to be blocked.\nExample: `--block-networks 1.1.1.1/32  --block-networks private`")
-    .option('--config-var <var...>', "Pass a wasi config variable to the program.\nExample: `--config-var FOO=BAR`")
-    .option('--keyvalue-var <var...>', "Preset data for the In-Memory provider of WASI key-value API.\nExample: `--keyvalue-var FOO=BAR`")
+    .option('--map-dir <mapping>', "Grant access of a host directory to a guest.\nExample: `--map-dir ./usr/hello::/hello`")
+    .option('--env <var>', "Pass an environment variable to the program.\nExample: `--env FOO=BAR`")
+    .option('--allowed-outbound-hosts <host>', "The network destinations which the component is allowed to access.\nExample: `--allowed-outbound-hosts https://*.github.net`")
+    .option('--block-networks <network>', "Set of IP networks to be blocked.\nExample: `--block-networks 1.1.1.1/32  --block-networks private`")
+    .option('--config-var <var>', "Pass a wasi config variable to the program.\nExample: `--config-var FOO=BAR`")
+    .option('--keyvalue-var <var>', "Preset data for the In-Memory provider of WASI key-value API.\nExample: `--keyvalue-var FOO=BAR`")
     .option('--wasm-timeout <seconds>', "Maximum execution time of wasm code before timing out (seconds).", parseInt)
     .option('--wasm-max-memory-size <bytes>', "Maximum size, in bytes, that a linear memory is allowed to reach.", parseInt)
     .option('--wasm-max-stack <bytes>', "Maximum stack size, in bytes, that wasm is allowed to consume before a stack overflow is reported.", parseInt)
     .option('--wasm-fuel <units>', "Enable execution fuel with N units fuel, trapping after running out of fuel.", parseInt)
     .option('--wasm-cache-dir <dir>', "Precompiled WebAssembly Component as `*.cwasm` files cache dir. ")
     .action(async (wasm, opts) => {
-        const mapDirs = {};
-        opts.mapDir?.forEach(m => {
-            const [key, value] = m.split('::');
-            mapDirs[key] = value || key;
-        });
-
-        const envVars = {};
-        opts.env?.forEach(e => {
-            const [key, value] = e.split('=');
-            envVars[key] = value;
-        });
-
-        const configVars = opts.configVar?.map(v => {
-            const [key, value] = v.split('=');
-            return { key, value };
-        });
-
-        const keyvalueVars = opts.keyvalueVar?.map(v => {
-            const [key, value] = v.split('=');
-            return { key, value };
-        });
+        const mapDirs = Array.isArray(opts.mapDir) ? opts.mapDir : (opts.mapDir ? [opts.mapDir] : []);
+        const envVars = Array.isArray(opts.env) ? opts.env : (opts.env ? [opts.env] : []);
+        const configVars = Array.isArray(opts.configVars) ? opts.configVars : (opts.configVars ? [opts.configVars] : []);
+        const keyvalueVars = Array.isArray(opts.keyvalueVars) ? opts.keyvalueVars : (opts.keyvalueVars ? [opts.keyvalueVars] : []);
 
         try {
             wasm_sandbox.serve({
                 wasmFile: wasm,
                 ip: opts.ip,
                 port: opts.port,
+                shutdownPort: opts.shutdownPort,
                 workDir: opts.workDir,
-                mapDirs,
-                envVars,
-                allowedOutboundHosts: opts.allowedOutboundHosts,
-                blockNetworks: opts.blockNetworks,
-                configVars,
-                keyvalueVars,
+                mapDirs: mapDirs.map(m => {
+                    const [key, value] = m.split('::');
+                    return { key, value: value || key };
+                }),
+                envVars: envVars.map(m => {
+                    const [key, value] = m.split('::');
+                    return { key, value: value || key };
+                }),
+                allowedOutboundHosts: Array.isArray(opts.allowedOutboundHosts)
+                    ? opts.allowedOutboundHosts
+                    : (opts.allowedOutboundHosts ? [opts.allowedOutboundHosts] : []),
+                blockNetworks: Array.isArray(opts.blockNetworks)
+                    ? opts.blockNetworks
+                    : (opts.blockNetworks ? [opts.blockNetworks] : []),
+                configVars: configVars.map(m => {
+                    const [key, value] = m.split('::');
+                    return { key, value: value || key };
+                }),
+                keyvalueVars: keyvalueVars.map(m => {
+                    const [key, value] = m.split('::');
+                    return { key, value: value || key };
+                }),
                 wasmTimeout: opts.wasmTimeout,
                 wasmMaxMemorySize: opts.wasmMaxMemorySize,
                 wasmMaxWasmStack: opts.wasmMaxStack,

@@ -1,6 +1,6 @@
 {
   "name": "wasm-sandbox",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "wasm-sandbox CLI tool",
   "author": "guyoung",
   "homepage": "https://github.com/guyoung/wasm-sandbox-node/tree/main/cli",
@@ -26,7 +26,7 @@
     "wasm-sandbox": "cli.js"
   },
   "dependencies": {
-    "@wasm-sandbox/runtime": "^1.2.0",
+    "@wasm-sandbox/runtime": "^1.3.0",
     "commander": "^14.0.3"
   }
 }

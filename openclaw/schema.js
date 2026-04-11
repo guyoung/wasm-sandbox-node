@@ -126,18 +126,30 @@ export const RunOptionSchema = Type.Object({
 
 /** Start http server from a WebAssembly Component configuration option */
 export const ServeOptionSchema = Type.Object({
-  /** Socket ip for the web server to bind to. */
+  /** Socket ip for the web server to bind to. 
+   * Default: Loopback address, 127.0.0.1
+  */
   ip: Type.Optional(Type.String({
-    description: 'Socket ip for the web server to bind to.', 
+    description: 'Socket ip for the web server to bind to.\nDefault: Loopback address, 127.0.0.1', 
   })),
 
-  /** Socket port for the web server to bind to. */
+  /** Socket port for the web server to bind to. 
+   * Default: 30001
+  */
   port: Type.Optional(Type.Number({
-    description: 'Socket port for the web server to bind to.',
+    description: 'Socket port for the web server to bind to.\nDefault: 30001',
     minimum: 0,
     maximum: 65535,
   })),
 
+    /** Socket port where, when connected to, will initiate a graceful shutdown.
+   * Default: 30002
+  */
+  shutdownPort: Type.Optional(Type.Number({
+    description: 'Socket port where, when connected to, will initiate a graceful shutdown.\nDefault: 30002',
+    minimum: 0,
+    maximum: 65535,
+  })),
   /**
    * Grant access of a host directory to guest root dir.
    * Example: `--work-dir ./`
